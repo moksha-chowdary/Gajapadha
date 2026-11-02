@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAJAPADHA | Footwear Marketplace & 3D Studio for Sizes Above 10 UK</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Three.js for 3D Sneaker Customizer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Google Fonts: Montserrat (matches logo wordmark), Newsreader (Editorial Headlines), Inter (Clean UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            brand: ['Montserrat', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+          },
+          colors: {
+            gaja: {
+              bg: '#FAF9F6',        // Warm off-white from logo background
+              surface: '#F2EFE9',   // Soft stone editorial card surface
+              border: '#E2DDD5',    // Crisp editorial divider line
+              navy: '#201E3A',      // Deep indigo-navy from GAJAPADHA text & toes
+              charcoal: '#413D3A',  // Warm espresso charcoal from foot arch & sole
+              gold: '#C48B32',      // Golden ochre from elephant trunk toe box
+              goldLight: '#F7EFE2', // Soft gold tint
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF9F6;
+      color: #201E3A;
+    }
+    input[type="range"] {
+      accent-color: #C48B32;
+    }
+    .studio-grid-bg {
+      background-color: #F2EFE9;
+      background-image: radial-gradient(#D5CFC4 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+  </style>
+</head>
+
+<body class="bg-gaja-bg text-gaja-navy font-sans min-h-screen flex flex-col antialiased selection:bg-gaja-gold selection:text-white">
+
+  <!-- ===================================================================== -->
+  <!-- CLEAN EDITORIAL MASTHEAD WITH UPLOADED GAJAPADHA LOGO                 -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-gaja-bg/95 backdrop-blur-md border-b-2 border-gaja-navy">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-4 gap-4">
+
+        <!-- Brand Logo (Exact SVG Recreation of Uploaded GAJAPADHA Logo) -->
+        <div class="flex items-center gap-3.5 cursor-pointer group" onclick="switchTab('marketplace')">
+          <svg viewBox="0 0 130 96" class="w-14 h-12 sm:w-16 sm:h-14 flex-shrink-0 transition-transform group-hover:scale-105" aria-label="GAJAPADHA Logo">
+            <!-- 5 Toes (Alternating Deep Navy & Warm Charcoal as in logo) -->
+            <ellipse cx="26" cy="30" rx="5.2" ry="6.5" transform="rotate(-22 26 30)" fill="#201E3A"/>
+            <ellipse cx="37" cy="21" rx="5.8" ry="7.2" transform="rotate(-12 37 21)" fill="#201E3A"/>
+            <ellipse cx="50" cy="17" rx="6.2" ry="7.8" fill="#201E3A"/>
+            <ellipse cx="64" cy="18" rx="6.6" ry="8.4" transform="rotate(10 64 18)" fill="#413D3A"/>
+            <ellipse cx="81" cy="25" rx="9.2" ry="11.2" transform="rotate(24 81 25)" fill="#201E3A"/>
+            <!-- Navy Heel Sweep -->
+            <path d="M 19 39 C 16 52, 11 62, 16 74 C 21 82, 36 83, 48 80 C 31 73, 22 57, 23 41 Z" fill="#201E3A"/>
+            <!-- Warm Charcoal Foot Arch / Elephant Head Silhouette -->
+            <path d="M 31 45 C 29 28, 66 25, 72 44 C 75 53, 68 62, 62 56 C 56 50, 44 55, 46 67 C 47 75, 57 79, 57 79 L 44 79 C 31 72, 31 56, 31 45 Z" fill="#413D3A"/>
+            <!-- Elephant Eye & Tusk Notch -->
+            <ellipse cx="76" cy="57" rx="3.2" ry="1.8" transform="rotate(15 76 57)" fill="#413D3A"/>
+            <path d="M 67 66 Q 78 75 94 64 Q 86 76 71 75 L 67 81 L 57 79 Z" fill="#413D3A"/>
+            <!-- Ochre Gold Elephant Trunk Forming the Shoe Vamp / Toe Box -->
+            <path d="M 76 39 C 89 43, 98 57, 113 61 C 122 64, 122 77, 108 79 C 94 81, 82 79, 79 75" fill="none" stroke="#C48B32" stroke-width="6.5" stroke-linecap="round"/>
+            <!-- Bottom Outsole Wave (Navy Heel + Charcoal Forefoot) -->
+            <path d="M 12 75 C 14 88, 34 89, 50 86" fill="none" stroke="#201E3A" stroke-width="5.5" stroke-linecap="round"/>
+            <path d="M 50 86 C 68 83, 98 92, 120 79" fill="none" stroke="#413D3A" stroke-width="5.5" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div class="font-brand font-extrabold text-xl sm:text-2xl tracking-[0.12em] text-gaja-navy leading-none">
+              GAJAPADHA
+            </div>
+            <p class="text-[11px] sm:text-xs text-gaja-charcoal font-medium mt-1">
+              Large-Size Footwear Marketplace &amp; 3D Bespoke Studio (UK 11–15)
+            </p>
+          </div>
+        </div>
+
+        <!-- Center Editorial Navigation Links (Desktop) -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold">
+          <button id="nav-marketplace" onclick="switchTab('marketplace')" class="py-1 border-b-2 border-gaja-gold text-gaja-navy transition">
+            Marketplace (UK 11–15)
+          </button>
+          <button id="nav-studio" onclick="switchTab('studio')" class="py-1 border-b-2 border-transparent text-gaja-charcoal hover:text-gaja-navy transition flex items-center gap-1.5">
+            <i class="fa-solid fa-cube text-gaja-gold text-xs"></i> 3D Custom Shoe Studio
+          </button>
+          <button id="nav-fitpassport" onclick="switchTab('fitpassport')" class="py-1 border-b-2 border-transparent text-gaja-charcoal hover:text-gaja-navy transition">
+            Millimeter Fit Passport
+          </button>
+          <button id="nav-seller" onclick="switchTab('seller')" class="py-1 border-b-2 border-transparent text-gaja-charcoal hover:text-gaja-navy transition">
+            Partner Supply &amp; OEM
+          </button>
+        </nav>
+
+        <!-- Right Action Buttons -->
+        <div class="flex items-center gap-3">
+          <button onclick="switchTab('studio')" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gaja-gold hover:bg-[#b07b28] text-white font-semibold text-xs uppercase tracking-wider transition shadow-sm">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Customize in 3D
+          </button>
+          <button onclick="toggleCartDrawer(true)" class="px-4 py-2.5 rounded-lg bg-gaja-navy hover:bg-gaja-charcoal text-white font-semibold text-xs uppercase tracking-wider flex items-center gap-2 transition">
+            <i class="fa-solid fa-bag-shopping text-gaja-gold"></i>
+            <span>Bag</span>
+            <span id="cart-count-badge" class="px-1.5 py-0.5 rounded bg-gaja-gold text-white text-[11px] font-bold">1</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Strip -->
+      <div class="flex lg:hidden overflow-x-auto py-2.5 gap-5 border-t border-gaja-border text-xs font-semibold whitespace-nowrap">
+        <button id="mnav-marketplace" onclick="switchTab('marketplace')" class="text-gaja-navy border-b-2 border-gaja-gold pb-1">
+          Marketplace (UK 11–15)
+        </button>
+        <button id="mnav-studio" onclick="switchTab('studio')" class="text-gaja-charcoal pb-1">
+          3D Custom Studio
+        </button>
+        <button id="mnav-fitpassport" onclick="switchTab('fitpassport')" class="text-gaja-charcoal pb-1">
+          Fit Passport (mm)
+        </button>
+        <button id="mnav-seller" onclick="switchTab('seller')" class="text-gaja-charcoal pb-1">
+          Brand &amp; OEM Supply
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN CONTENT AREA (Clean, Spacious Editorial Layout)                  -->
+  <!-- ===================================================================== -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: MARKETPLACE (Editorial Lead + Clean Filterable Catalog)      -->
+    <!-- =================================================================== -->
+    <section id="tab-marketplace" class="space-y-12">
+
+      <!-- Editorial Hero Grid (Marketplace.org 2-Column Lead Story Style) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-10 border-b border-gaja-border items-center">
+        <!-- Left 7 Cols: Editorial Lead Headline & Value Proposition -->
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gaja-gold">
+            <span>BEYOND SIZE 10 UK</span>
+            <span>•</span>
+            <span>MILLIMETER-VERIFIED FIT</span>
+          </div>
+
+          <h1 class="font-serif text-3xl sm:text-5xl font-semibold text-gaja-navy leading-[1.12]">
+            Stylish, anatomically engineered footwear for sizes UK 11 to UK 15.
+          </h1>
+
+          <p class="text-gaja-charcoal text-base sm:text-lg leading-relaxed max-w-2xl">
+            People with larger feet shouldn’t have to settle for leftover stock or inconsistent sizing. <strong>GAJAPADHA</strong> connects you with verified large-size collections from top footwear makers—and lets you customize your own 3D shoe built on a calibrated millimeter last.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <button onclick="switchTab('studio')" class="px-6 py-3.5 rounded-lg bg-gaja-navy hover:bg-gaja-charcoal text-white font-semibold text-sm flex items-center gap-2.5 transition shadow-sm">
+              <i class="fa-solid fa-cube text-gaja-gold"></i> Launch 3D Custom Shoe Studio
+            </button>
+            <button onclick="switchTab('fitpassport')" class="px-6 py-3.5 rounded-lg bg-white hover:bg-gaja-surface text-gaja-navy border border-gaja-navy font-semibold text-sm flex items-center gap-2 transition">
+              <i class="fa-solid fa-ruler-horizontal text-gaja-gold"></i> Calibrate My Fit Passport (mm)
+            </button>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Clean Featured Summary Box -->
+        <div class="lg:col-span-5 bg-white border border-gaja-border rounded-xl p-6 sm:p-7 shadow-sm space-y-5">
+          <div class="flex items-center justify-between border-b border-gaja-border pb-4">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-widest text-gaja-gold">How GAJAPADHA Works</span>
+              <h2 class="font-serif text-xl font-semibold text-gaja-navy mt-0.5">Three Pillars of Large-Foot Comfort</h2>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-gaja-goldLight text-gaja-gold font-bold text-xs">UK 11–15</span>
+          </div>
+
+          <div class="space-y-4 text-sm">
+            <div class="flex items-start gap-3.5">
+              <div class="w-7 h-7 rounded-full bg-gaja-navy text-white font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
+              <div>
+                <h3 class="font-bold text-gaja-navy">Millimeter Fit Standardization</h3>
+                <p class="text-xs text-gaja-charcoal leading-relaxed mt-0.5">Every brand grades sizes differently above UK 10. We measure internal insole length &amp; ball width in millimeters so you never buy the wrong size.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-7 h-7 rounded-full bg-gaja-gold text-white font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
+              <div>
+                <h3 class="font-bold text-gaja-navy">3D Custom Shoe Configurator</h3>
+                <p class="text-xs text-gaja-charcoal leading-relaxed mt-0.5">Personalize 7 anatomical zones (vamp, quarter, heel, laces, midsole, outsole) in real-time 3D with modular 3mm, 5mm, or 8mm insoles.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-7 h-7 rounded-full bg-gaja-charcoal text-white font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
+              <div>
+                <h3 class="font-bold text-gaja-navy">Direct Export-Surplus &amp; OEM Stock</h3>
+                <p class="text-xs text-gaja-charcoal leading-relaxed mt-0.5">We partner directly with Agra &amp; Ambur export factories that already own UK 11–15 sole molds—eliminating stock shortages.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clean Filter Bar -->
+      <div class="bg-white border border-gaja-border rounded-xl p-5 flex flex-wrap items-center justify-between gap-4">
+        <div class="space-y-2">
+          <div class="text-xs font-bold uppercase tracking-wider text-gaja-charcoal">
+            Filter Collection by UK Shoe Size:
+          </div>
+          <div id="size-filter-container" class="flex flex-wrap gap-1.5">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-gaja-charcoal mb-1">Footwear Category</label>
+            <select id="category-filter" onchange="renderMarketplace()" class="px-3.5 py-2 rounded-lg bg-gaja-bg border border-gaja-border text-xs sm:text-sm font-medium text-gaja-navy focus:outline-none focus:border-gaja-gold">
+              <option value="All">All Categories (8 Styles)</option>
+              <option value="Casual Sneakers">Casual Sneakers</option>
+              <option value="Formal Office">Formal Office</option>
+              <option value="Athletic & Running">Athletic &amp; Running</option>
+              <option value="Loafers & Boots">Loafers &amp; Boots</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-gaja-charcoal mb-1">Forefoot Width Profile</label>
+            <select id="width-filter" onchange="renderMarketplace()" class="px-3.5 py-2 rounded-lg bg-gaja-bg border border-gaja-border text-xs sm:text-sm font-medium text-gaja-navy focus:outline-none focus:border-gaja-gold">
+              <option value="All">All Widths (Narrow B to Extra-Wide 4E)</option>
+              <option value="Narrow/Lean (B/C)">Narrow / Lean (B/C)</option>
+              <option value="Standard (D/E)">Standard (D/E)</option>
+              <option value="Wide (2E)">Wide (2E)</option>
+              <option value="Extra-Wide (4E)">Extra-Wide (4E)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marketplace Product Grid -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between border-b border-gaja-border pb-3">
+          <h2 class="font-serif text-2xl font-semibold text-gaja-navy">Verified Large-Size Footwear Collection</h2>
+          <span id="banner-passport-summary" class="text-xs font-medium text-gaja-charcoal">
+            Matched to your Fit Passport: <strong class="text-gaja-navy">UK 12 (296mm × 113mm)</strong>
+          </span>
+        </div>
+
+        <div id="marketplace-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: 3D CUSTOM SHOE STUDIO (Clean Editorial Workspace)            -->
+    <!-- =================================================================== -->
+    <section id="tab-studio" class="hidden space-y-8">
+      <!-- Editorial Section Header -->
+      <div class="border-b border-gaja-border pb-5 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-gaja-gold">GAJAPADHA Bespoke Workshop</span>
+          <h1 class="font-serif text-3xl sm:text-4xl font-semibold text-gaja-navy mt-1">
+            Interactive 3D Custom Shoe Studio (UK 11–15)
+          </h1>
+        </div>
+        <p class="text-xs sm:text-sm text-gaja-charcoal max-w-md">
+          Rotate the 3D model 360°, inspect the 7 anatomical components, and customize every panel with leather, suede, or breathable mesh.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left 7 Cols: Clean Light-Mode 3D Viewport -->
+        <div class="lg:col-span-7 bg-white border border-gaja-border rounded-xl overflow-hidden shadow-sm">
+          <!-- Viewport Toolbar -->
+          <div class="px-4 py-3 bg-gaja-bg border-b border-gaja-border flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2 text-xs font-semibold text-gaja-navy">
+              <span id="studio-active-swatch" class="w-3.5 h-3.5 rounded-full bg-gaja-navy border border-gaja-border"></span>
+              <span>Selected Zone: <strong id="studio-active-part-label" class="text-gaja-gold">1. Vamp (Front Toe Box)</strong></span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-1.5">
+              <button onclick="toggleAutoRotate()" id="btn-autorotate" class="px-3 py-1 rounded bg-gaja-navy text-white text-xs font-semibold">
+                <i class="fa-solid fa-rotate mr-1"></i>Auto-Spin
+              </button>
+              <button onclick="toggleExplodedView()" id="btn-explode" class="px-3 py-1 rounded bg-white border border-gaja-border text-gaja-charcoal hover:text-gaja-navy text-xs font-semibold">
+                <i class="fa-solid fa-layer-group mr-1 text-gaja-gold"></i>Explode Parts
+              </button>
+              <button onclick="cycleStudioLighting()" class="px-3 py-1 rounded bg-white border border-gaja-border text-gaja-charcoal hover:text-gaja-navy text-xs font-semibold">
+                <i class="fa-solid fa-sun mr-1 text-gaja-gold"></i><span id="lighting-label">Studio Light</span>
+              </button>
+              <button onclick="randomizeShoeColors()" class="px-3 py-1 rounded bg-white border border-gaja-border text-gaja-charcoal hover:text-gaja-navy text-xs font-semibold">
+                <i class="fa-solid fa-shuffle mr-1 text-gaja-gold"></i>Randomize
+              </button>
+            </div>
+          </div>
+
+          <!-- 3D WebGL Canvas Area -->
+          <div class="relative w-full h-[380px] sm:h-[440px] studio-grid-bg select-none">
+            <div id="three-canvas-container" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+
+            <!-- Exploded View Legend -->
+            <div id="exploded-labels-overlay" class="hidden absolute top-3 left-3 p-3 rounded-lg bg-white/95 border border-gaja-border text-[11px] text-gaja-navy shadow-sm space-y-0.5 pointer-events-none">
+              <div class="font-bold text-gaja-gold uppercase tracking-wider mb-1">7-Zone Shoe Anatomy</div>
+              <div>1. Vamp (Forefoot Toe Box)</div>
+              <div>2. Quarter Panels (Side Walls)</div>
+              <div>3. Heel Counter &amp; Collar</div>
+              <div>4. Eyestay &amp; Laces</div>
+              <div>5. Tongue &amp; GAJAPADHA Tag</div>
+              <div>6. Shock-Absorbing EVA Midsole</div>
+              <div>7. Rubber Outsole (2E Wide Base)</div>
+            </div>
+
+            <!-- Camera View Angle Buttons -->
+            <div class="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex flex-wrap gap-1.5 bg-white/90 backdrop-blur px-2 py-1.5 rounded-lg border border-gaja-border shadow-sm">
+                <button onclick="setCameraView('side')" class="px-2.5 py-1 rounded text-xs font-medium text-gaja-navy hover:bg-gaja-surface">Side Profile</button>
+                <button onclick="setCameraView('top')" class="px-2.5 py-1 rounded text-xs font-medium text-gaja-navy hover:bg-gaja-surface">Top-Down</button>
+                <button onclick="setCameraView('heel')" class="px-2.5 py-1 rounded text-xs font-medium text-gaja-navy hover:bg-gaja-surface">Heel Counter</button>
+                <button onclick="setCameraView('outsole')" class="px-2.5 py-1 rounded text-xs font-medium text-gaja-navy hover:bg-gaja-surface">Outsole</button>
+              </div>
+
+              <div class="bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg border border-gaja-border text-xs font-semibold text-gaja-navy">
+                ID: <span id="canvas-mono-preview" class="text-gaja-gold font-bold">GP12</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Signature GAJAPADHA Theme Bar -->
+          <div class="px-4 py-3 bg-white border-t border-gaja-border flex flex-wrap items-center justify-between gap-2 text-xs">
+            <span class="font-semibold text-gaja-charcoal">Signature Logo Color Themes:</span>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="applyColorwayPreset('gajapadha')" class="px-3 py-1 rounded border border-gaja-navy bg-gaja-navy text-white font-medium">GAJAPADHA Signature</button>
+              <button onclick="applyColorwayPreset('ochre')" class="px-3 py-1 rounded border border-gaja-gold bg-gaja-goldLight text-gaja-navy font-medium">Ochre Gold &amp; Espresso</button>
+              <button onclick="applyColorwayPreset('alabaster')" class="px-3 py-1 rounded border border-gaja-border bg-gaja-bg text-gaja-navy font-medium">Minimal Alabaster</button>
+              <button onclick="applyColorwayPreset('royal')" class="px-3 py-1 rounded border border-gaja-border bg-white text-gaja-charcoal font-medium">Classic Court</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Clean Step-by-Step Configurator Panel -->
+        <div class="lg:col-span-5 bg-white border border-gaja-border rounded-xl p-6 shadow-sm space-y-5">
+          <div class="border-b border-gaja-border pb-3">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-gaja-gold">Custom Specification</span>
+            <h3 class="font-serif text-2xl font-semibold text-gaja-navy">Configure Materials &amp; Fit</h3>
+          </div>
+
+          <!-- 1. Select Shoe Part -->
+          <div class="space-y-2">
+            <label class="text-xs font-bold uppercase tracking-wider text-gaja-charcoal">1. Select Shoe Component (7 Zones)</label>
+            <div id="studio-part-buttons" class="grid grid-cols-2 gap-2">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- 2. Select Material -->
+          <div class="space-y-2">
+            <label class="text-xs font-bold uppercase tracking-wider text-gaja-charcoal">2. Select Upper / Panel Material</label>
+            <div id="studio-material-buttons" class="grid grid-cols-2 gap-2">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- 3. Select Color Swatch -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <label class="text-xs font-bold uppercase tracking-wider text-gaja-charcoal">3. Select Color Palette</label>
+              <label class="flex items-center gap-1.5 text-xs font-semibold text-gaja-gold cursor-pointer">
+                <span>Custom Hex:</span>
+                <input id="custom-hex-picker" type="color" value="#201E3A" oninput="applyStudioColor(this.value)" class="w-6 h-6 rounded border border-gaja-border cursor-pointer" />
+              </label>
+            </div>
+            <div id="studio-color-swatches" class="flex flex-wrap gap-2">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- 4. Size & Monogram -->
+          <div class="grid grid-cols-2 gap-3 pt-1">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-gaja-charcoal mb-1">4. UK Size (11–15)</label>
+              <select id="studio-size-select" onchange="updateStudioSpecs()" class="w-full px-3 py-2 rounded-lg bg-gaja-bg border border-gaja-border text-xs sm:text-sm font-bold text-gaja-navy">
+                <option value="UK 11 (298mm)">UK 11 (298mm Last)</option>
+                <option value="UK 11.5 (302mm)">UK 11.5 (302mm Last)</option>
+                <option value="UK 12 (307mm)" selected>UK 12 (307mm Last)</option>
+                <option value="UK 12.5 (311mm)">UK 12.5 (311mm Last)</option>
+                <option value="UK 13 (315mm)">UK 13 (315mm Last)</option>
+                <option value="UK 14 (324mm)">UK 14 (324mm Last)</option>
+                <option value="UK 15 (332mm)">UK 15 (332mm Last)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-gaja-charcoal mb-1">5. Heel Monogram</label>
+              <input id="studio-monogram" type="text" maxlength="6" value="GP12" oninput="updateStudioSpecs()" class="w-full px-3 py-2 rounded-lg bg-gaja-bg border border-gaja-border text-xs sm:text-sm font-bold uppercase text-gaja-navy" />
+            </div>
+          </div>
+
+          <!-- 6. Modular Insole Selector -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-gaja-charcoal mb-1">6. Modular Insole Volume Tuning</label>
+            <select id="studio-insole-select" onchange="updateStudioSpecs()" class="w-full px-3 py-2 rounded-lg bg-gaja-bg border border-gaja-border text-xs font-medium text-gaja-navy">
+              <option value="3mm Slim PU Insole (Wide/High-Instep 2E–4E)" selected>3mm Slim PU Footbed — Extra Space for Wide 2E–4E Feet</option>
+              <option value="5mm Standard Contoured Insole (Standard D/E)">5mm Standard Contoured Footbed — Standard D/E Fit</option>
+              <option value="8mm Deep-Cupped Volume-Reducer Insole (Narrow B/C)">8mm Volume-Reducer Footbed — Snug Lock for Narrow B/C Feet</option>
+            </select>
+          </div>
+
+          <!-- Price & Add to Bag CTA -->
+          <div class="pt-4 border-t border-gaja-border flex items-center justify-between gap-4">
+            <div>
+              <div class="text-xs text-gaja-charcoal">Custom Made-to-Order Pair</div>
+              <div id="studio-total-price" class="font-serif text-3xl font-bold text-gaja-navy">₹3,499</div>
+              <div id="studio-spec-subtext" class="text-[11px] text-gaja-gold font-semibold">UK 12 (307mm) • 3mm Slim PU Insole</div>
+            </div>
+            <button onclick="addCustomShoeToCart()" class="px-5 py-3.5 rounded-lg bg-gaja-navy hover:bg-gaja-charcoal text-white font-semibold text-xs sm:text-sm uppercase tracking-wider transition shadow-sm flex items-center gap-2">
+              <i class="fa-solid fa-bag-shopping text-gaja-gold"></i> Add Custom Pair
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- TAB 3: MILLIMETER FIT PASSPORT (Clean 2-Column Editorial Calculator)-->
+    <!-- =================================================================== -->
+    <section id="tab-fitpassport" class="hidden space-y-8">
+      <div class="border-b border-gaja-border pb-5">
+        <span class="text-xs font-bold uppercase tracking-widest text-gaja-gold">Biometric Size Standardization</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-semibold text-gaja-navy mt-1">
+          GAJAPADHA Millimeter Fit Passport
+        </h1>
+        <p class="text-sm text-gaja-charcoal max-w-2xl mt-1">
+          Above UK 10, foot length and width scale non-linearly, and home ruler measurements often vary. Enter your Wall-to-Book measurements below to standardize your size across every brand.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left 7 Cols: Inputs -->
+        <div class="lg:col-span-7 bg-white border border-gaja-border rounded-xl p-6 space-y-6 shadow-sm">
+          <div class="p-4 rounded-lg bg-gaja-goldLight border border-gaja-gold/30 text-xs text-gaja-navy leading-relaxed">
+            <strong class="text-gaja-gold uppercase tracking-wider block mb-0.5">How to Measure Without Pen-Tilt Error:</strong>
+            Stand with your heel flat against a wall, place a hardcover book touching your longest toe, and measure the straight distance from the wall to the book edge in <strong>millimeters (mm)</strong>.
+          </div>
+
+          <!-- Length Slider -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <label class="text-sm font-bold text-gaja-navy">1. Foot Length — Heel to Longest Toe (mm)</label>
+              <div class="flex items-center gap-1">
+                <input id="input-length-num" type="number" min="280" max="335" value="296" onchange="syncFitPassport('num')" class="w-20 px-2.5 py-1 rounded bg-gaja-bg border border-gaja-border text-right font-bold text-gaja-navy" />
+                <span class="text-xs text-gaja-charcoal font-semibold">mm</span>
+              </div>
+            </div>
+            <input id="input-length-slider" type="range" min="280" max="335" value="296" oninput="syncFitPassport('slider')" class="w-full h-2 bg-gaja-surface rounded-lg cursor-pointer" />
+            <div class="flex justify-between text-[11px] text-gaja-charcoal">
+              <span>280mm (UK 10)</span>
+              <span>296mm (UK 12)</span>
+              <span>315mm (UK 13)</span>
+              <span>335mm (UK 15)</span>
+            </div>
+          </div>
+
+          <!-- Width Slider -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <label class="text-sm font-bold text-gaja-navy">2. Forefoot Width — Widest Ball Point (mm)</label>
+              <div class="flex items-center gap-1">
+                <input id="input-width-num" type="number" min="95" max="130" value="113" onchange="syncFitPassport('num')" class="w-20 px-2.5 py-1 rounded bg-gaja-bg border border-gaja-border text-right font-bold text-gaja-navy" />
+                <span class="text-xs text-gaja-charcoal font-semibold">mm</span>
+              </div>
+            </div>
+            <input id="input-width-slider" type="range" min="95" max="130" value="113" oninput="syncFitPassport('slider')" class="w-full h-2 bg-gaja-surface rounded-lg cursor-pointer" />
+            <div class="flex justify-between text-[11px] text-gaja-charcoal">
+              <span>95mm (Narrow B)</span>
+              <span>106mm (Standard D)</span>
+              <span>114mm (Wide 2E)</span>
+              <span>130mm (Extra-Wide 4E)</span>
+            </div>
+          </div>
+
+          <!-- Posture & Time Offsets -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-gaja-border">
+            <div>
+              <label class="block text-xs font-bold uppercase text-gaja-charcoal mb-1">Posture Compensation</label>
+              <select id="fit-posture" onchange="calculateFitPassport()" class="w-full px-3 py-2 rounded-lg bg-gaja-bg border border-gaja-border text-xs font-medium text-gaja-navy">
+                <option value="0">Standing with Full Weight (+0mm)</option>
+                <option value="4">Measured Sitting Down (+4mm load offset)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-gaja-charcoal mb-1">Time of Measurement</label>
+              <select id="fit-time" onchange="calculateFitPassport()" class="w-full px-3 py-2 rounded-lg bg-gaja-bg border border-gaja-border text-xs font-medium text-gaja-navy">
+                <option value="0">Evening / Post-Activity (+0mm)</option>
+                <option value="2.5">Morning (+2.5mm evening swell allowance)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Toe Clearance Preference -->
+          <div>
+            <label class="block text-xs font-bold uppercase text-gaja-charcoal mb-2">Preferred Toe-Box Clearance</label>
+            <div class="grid grid-cols-3 gap-2.5">
+              <button type="button" onclick="setClearance(8)" id="clearance-8" class="p-2.5 rounded-lg border border-gaja-border bg-gaja-bg text-xs font-semibold text-gaja-charcoal">
+                Snug (+8mm)
+              </button>
+              <button type="button" onclick="setClearance(12)" id="clearance-12" class="p-2.5 rounded-lg border-2 border-gaja-navy bg-gaja-goldLight text-xs font-bold text-gaja-navy">
+                Standard (+12mm)
+              </button>
+              <button type="button" onclick="setClearance(15)" id="clearance-15" class="p-2.5 rounded-lg border border-gaja-border bg-gaja-bg text-xs font-semibold text-gaja-charcoal">
+                Roomy (+15mm)
+              </button>
+            </div>
+          </div>
+
+          <!-- Reference Shoe Sanity Check -->
+          <div class="p-4 rounded-lg bg-gaja-bg border border-gaja-border space-y-3">
+            <div class="text-xs font-bold uppercase tracking-wider text-gaja-navy">
+              Reference Shoe Cross-Check (Detects Ruler Errors)
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              <select id="ref-brand" onchange="calculateFitPassport()" class="px-2.5 py-2 rounded bg-white border border-gaja-border text-xs font-medium">
+                <option value="Nike">Nike</option>
+                <option value="Adidas">Adidas</option>
+                <option value="Bata">Bata</option>
+                <option value="Woodland">Woodland</option>
+              </select>
+              <select id="ref-size" onchange="calculateFitPassport()" class="px-2.5 py-2 rounded bg-white border border-gaja-border text-xs font-medium">
+                <option value="10">UK 10</option>
+                <option value="11">UK 11</option>
+                <option value="12" selected>UK 12</option>
+                <option value="13">UK 13</option>
+                <option value="14">UK 14</option>
+              </select>
+              <select id="ref-feel" onchange="calculateFitPassport()" class="px-2.5 py-2 rounded bg-white border border-gaja-border text-xs font-medium">
+                <option value="tight">Feels Tight</option>
+                <option value="good" selected>Fits Well</option>
+                <option value="loose">Feels Loose</option>
+              </select>
+            </div>
+            <div id="ref-alert-box" class="p-2.5 rounded text-xs font-medium"></div>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Calibrated Results & Brand Translator -->
+        <div class="lg:col-span-5 bg-white border-2 border-gaja-navy rounded-xl p-6 space-y-5 shadow-sm">
+          <div class="border-b border-gaja-border pb-3 flex items-center justify-between">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-widest text-gaja-gold">Calibrated Result</span>
+              <h3 class="font-serif text-2xl font-semibold text-gaja-navy">Your Fit Passport</h3>
+            </div>
+            <span id="nav-passport-badge" class="px-2.5 py-1 rounded bg-gaja-goldLight text-gaja-navy font-bold text-xs">UK 12</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-4 rounded-lg bg-gaja-bg border border-gaja-border">
+              <div class="text-xs text-gaja-charcoal">Recommended Size</div>
+              <div id="out-uk-size" class="font-serif text-3xl font-bold text-gaja-navy mt-0.5">UK 12</div>
+              <div id="out-last-mm" class="text-[11px] text-gaja-charcoal mt-0.5">Target Last: 308 mm</div>
+            </div>
+            <div class="p-4 rounded-lg bg-gaja-bg border border-gaja-border">
+              <div class="text-xs text-gaja-charcoal">Width Classification</div>
+              <div id="out-width-label" class="font-serif text-2xl font-bold text-gaja-gold mt-0.5">Wide (2E)</div>
+              <div id="out-ratio-text" class="text-[11px] text-gaja-charcoal mt-0.5">W/L Ratio: 0.382</div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-gaja-goldLight border border-gaja-gold/40 space-y-1">
+            <div class="text-xs font-bold uppercase text-gaja-navy">Modular Footbed Pairing</div>
+            <div id="out-insole-title" class="text-sm font-bold text-gaja-navy">3mm Slim High-Density PU Footbed</div>
+            <p id="out-insole-desc" class="text-xs text-gaja-charcoal leading-relaxed"></p>
+          </div>
+
+          <div class="space-y-2">
+            <div class="text-xs font-bold uppercase tracking-wider text-gaja-charcoal">Cross-Brand Size Translator</div>
+            <div class="border border-gaja-border rounded-lg overflow-hidden">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-gaja-surface text-gaja-navy font-bold">
+                  <tr>
+                    <th class="py-2 px-3">Brand</th>
+                    <th class="py-2 px-3">Last Behavior</th>
+                    <th class="py-2 px-3 text-right">Recommended</th>
+                  </tr>
+                </thead>
+                <tbody id="brand-translator-tbody" class="divide-y divide-gaja-border bg-white"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <button onclick="applyPassportAndBrowse()" class="w-full py-3.5 rounded-lg bg-gaja-navy hover:bg-gaja-charcoal text-white font-semibold text-xs uppercase tracking-wider transition">
+            Apply Fit Profile to Catalog &amp; 3D Studio
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- TAB 4: BRAND & OEM SUPPLY PORTAL                                    -->
+    <!-- =================================================================== -->
+    <section id="tab-seller" class="hidden space-y-8">
+      <div class="border-b border-gaja-border pb-5">
+        <span class="text-xs font-bold uppercase tracking-widest text-gaja-gold">Supply Chain &amp; Inventory Architecture</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-semibold text-gaja-navy mt-1">
+          How GAJAPADHA Secures UK 11–15 Footwear Stock
+        </h1>
+        <p class="text-sm text-gaja-charcoal max-w-3xl mt-1">
+          Indian domestic retailers stop stocking at UK 10, but export manufacturing hubs in Agra, Ambur, and Kanpur produce thousands of EU 46–50 (UK 11–15) pairs weekly. We onboard their verified export stock and use modular 2E base molds for custom 3D orders.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Onboarding Form -->
+        <div class="lg:col-span-5 bg-white border border-gaja-border rounded-xl p-6 space-y-4 shadow-sm">
+          <h3 class="font-serif text-xl font-semibold text-gaja-navy">Onboard Verified >10 UK SKU</h3>
+          <form onsubmit="handleNewSellerSku(event)" class="space-y-3 text-xs sm:text-sm">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-gaja-charcoal mb-1">Brand Name *</label>
+                <input id="sku-brand" type="text" required value="AgraCraft Export" class="w-full px-3 py-2 rounded-lg bg-gaja-bg border border-gaja-border" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gaja-charcoal mb-1">Model Title *</label>
+                <input id="sku-title" type="text" required value="Sovereign Chelsea Boot" class="w-full px-3 py-2 rounded-lg bg-gaja-bg border border-gaja-border" />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-gaja-charcoal mb-1">Category *</label>
+                <select id="sku-category" class="w-full px-3 py-2 rounded-lg bg-gaja-bg border border-gaja-border">
+                  <option value="Loafers & Boots">Loafers &amp; Boots</option>
+                  <option value="Casual Sneakers">Casual Sneakers</option>
+                  <option value="Formal Office">Formal Office</option>
+                  <option value="Athletic & Running">Athletic &amp; Running</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gaja-charcoal mb-1">Price (₹ INR) *</label>
+                <input id="sku-price" type="number" required value="3699" class="w-full px-3 py-2 rounded-lg bg-gaja-bg border border-gaja-border" />
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <label class="block text-[11px] font-semibold text-gaja-charcoal mb-1">UK 12 Length (mm)</label>
+                <input id="sku-mm-length" type="number" required value="308" class="w-full px-2.5 py-2 rounded-lg bg-gaja-bg border border-gaja-border font-bold" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-gaja-charcoal mb-1">UK 12 Width (mm)</label>
+                <input id="sku-mm-width" type="number" required value="114" class="w-full px-2.5 py-2 rounded-lg bg-gaja-bg border border-gaja-border font-bold" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-gaja-charcoal mb-1">Width Class</label>
+                <select id="sku-width-class" class="w-full px-2 py-2 rounded-lg bg-gaja-bg border border-gaja-border text-xs">
+                  <option value="Wide (2E)">Wide (2E)</option>
+                  <option value="Standard (D/E)">Standard (D/E)</option>
+                  <option value="Extra-Wide (4E)">Extra-Wide (4E)</option>
+                  <option value="Narrow/Lean (B/C)">Narrow/Lean (B/C)</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="w-full py-3 rounded-lg bg-gaja-navy hover:bg-gaja-charcoal text-white font-semibold text-xs uppercase tracking-wider transition">
+              Publish Verified SKU to Marketplace
+            </button>
+          </form>
+        </div>
+
+        <!-- Partner Factory Queue -->
+        <div class="lg:col-span-7 bg-white border border-gaja-border rounded-xl p-6 space-y-4 shadow-sm">
+          <h3 class="font-serif text-xl font-semibold text-gaja-navy">Active OEM &amp; 3D Custom Production Batches</h3>
+          <div class="overflow-x-auto border border-gaja-border rounded-lg">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-gaja-surface text-gaja-navy font-bold">
+                <tr>
+                  <th class="py-3 px-3">Order / Batch</th>
+                  <th class="py-3 px-3">Partner Cluster</th>
+                  <th class="py-3 px-3">Verified Last (mm)</th>
+                  <th class="py-3 px-3">Insole Tuning</th>
+                  <th class="py-3 px-3">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gaja-border">
+                <tr>
+                  <td class="py-3 px-3 font-bold text-gaja-navy">#GP-9042 (3D Custom)</td>
+                  <td class="py-3 px-3">Agra Export Unit-3</td>
+                  <td class="py-3 px-3">UK 12 (307×113mm 2E)</td>
+                  <td class="py-3 px-3">3mm Slim PU</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-gaja-goldLight text-gaja-gold font-bold">Upper Clicking</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-gaja-navy">#GP-9039 (3D Custom)</td>
+                  <td class="py-3 px-3">Ambur Leather Craft</td>
+                  <td class="py-3 px-3">UK 13 (315×104mm B/C)</td>
+                  <td class="py-3 px-3">8mm Volume-Reducer</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-gaja-surface text-gaja-navy font-bold">Heat Lasting</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-gaja-navy">#LOT-418 (Brand Stock)</td>
+                  <td class="py-3 px-3">Kanpur Footwear Hub</td>
+                  <td class="py-3 px-3">UK 11–14 (45 Pairs)</td>
+                  <td class="py-3 px-3">5mm Standard</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Ready to Ship</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- EDITORIAL FOOTER                                                      -->
+  <!-- ===================================================================== -->
+  <footer class="border-t border-gaja-border bg-white mt-16 py-8 text-xs text-gaja-charcoal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="font-brand font-extrabold text-sm tracking-widest text-gaja-navy">GAJAPADHA</span>
+        <span>•</span>
+        <span>Footwear Marketplace &amp; 3D Studio for Sizes Above 10 UK (UK 11–15)</span>
+      </div>
+      <div>
+        Designed with GAJAPADHA Signature Palette (<span class="text-gaja-navy font-bold">#201E3A</span>, <span class="text-gaja-charcoal font-bold">#413D3A</span>, <span class="text-gaja-gold font-bold">#C48B32</span>)
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- STAGE 5.1 PROTOTYPE WORKSHEET MODAL                                   -->
+  <!-- ===================================================================== -->
+  <div id="stage-modal" class="fixed inset-0 z-50 hidden bg-gaja-navy/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white border border-gaja-border rounded-xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-xl">
+      <div class="p-5 border-b border-gaja-border flex items-center justify-between">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-gaja-gold">Stage 5.1 Submission Helper</span>
+          <h3 class="font-serif text-xl font-bold text-gaja-navy">GAJAPADHA Prototype Worksheet Answers</h3>
+        </div>
+        <button onclick="closeStageModal()" class="p-2 text-gaja-charcoal hover:text-gaja-navy">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="stage-worksheet-content" class="p-5 overflow-y-auto space-y-4 text-xs sm:text-sm text-gaja-charcoal leading-relaxed">
+        <div class="p-3.5 rounded-lg bg-gaja-bg border border-gaja-border">
+          <strong class="text-gaja-navy block mb-1">1. Format of the Prototype:</strong>
+          Digital Interactive Web Application Prototype ("GAJAPADHA") featuring an editorial marketplace for UK 11–15 footwear, a Three.js 3D Custom Shoe Studio, and a millimeter Fit Passport.
+        </div>
+        <div class="p-3.5 rounded-lg bg-gaja-bg border border-gaja-border">
+          <strong class="text-gaja-navy block mb-1">2. Included Functionality:</strong>
+          (a) Multi-brand UK 11–15 catalog with internal millimeter last specs, (b) 360° 3D Shoe Customizer across 7 anatomical parts with 3mm/5mm/8mm modular insole tuning, and (c) Wall-to-Book Fit Passport calculator.
+        </div>
+        <div class="p-3.5 rounded-lg bg-gaja-bg border border-gaja-border">
+          <strong class="text-gaja-navy block mb-1">3. Excluded Functionality:</strong>
+          Live banking/UPI payment processing, automated courier APIs, and LiDAR camera foot scanning.
+        </div>
+      </div>
+      <div class="p-4 border-t border-gaja-border flex justify-between">
+        <button onclick="copyStageAnswers()" class="px-4 py-2 rounded-lg border border-gaja-border text-xs font-bold text-gaja-navy hover:bg-gaja-surface">
+          Copy Answers
+        </button>
+        <button onclick="closeStageModal()" class="px-5 py-2 rounded-lg bg-gaja-navy text-white text-xs font-bold">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- SLIDE-OVER SHOPPING BAG DRAWER                                        -->
+  <!-- ===================================================================== -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 hidden bg-gaja-navy/60 backdrop-blur-sm flex justify-end">
+    <div class="w-full max-w-md bg-white h-full flex flex-col border-l border-gaja-border shadow-2xl">
+      <div class="p-5 border-b border-gaja-border flex items-center justify-between">
+        <h3 class="font-serif font-bold text-xl text-gaja-navy">Your GAJAPADHA Bag</h3>
+        <button onclick="toggleCartDrawer(false)" class="p-2 text-gaja-charcoal hover:text-gaja-navy">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="cart-items-list" class="flex-grow p-5 overflow-y-auto space-y-3"></div>
+      <div class="p-5 border-t border-gaja-border bg-gaja-bg space-y-3">
+        <div class="flex justify-between items-center">
+          <span class="text-sm font-semibold text-gaja-charcoal">Total Payable</span>
+          <span id="cart-total-amount" class="font-serif text-2xl font-bold text-gaja-navy">₹3,499</span>
+        </div>
+        <button onclick="simulateCheckout()" class="w-full py-3.5 rounded-lg bg-gaja-navy hover:bg-gaja-charcoal text-white font-semibold text-xs uppercase tracking-wider transition">
+          Proceed to Prototype Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-box" class="fixed bottom-5 right-5 z-50 hidden px-4 py-3 rounded-lg bg-gaja-navy text-white text-xs sm:text-sm font-medium shadow-xl flex items-center gap-2.5">
+    <i class="fa-solid fa-circle-check text-gaja-gold"></i>
+    <span id="toast-msg">Updated!</span>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION JAVASCRIPT                                                -->
+  <!-- ===================================================================== -->
+  <script>
+    // -----------------------------------------------------------------------
+    // 1. STATE: USER FIT PASSPORT & CURATED PRODUCTS (Logo Palette Aligned)
+    // -----------------------------------------------------------------------
+    const fitPassport = {
+      rawLength: 296,
+      rawWidth: 113,
+      postureOffset: 0,
+      timeOffset: 0,
+      clearance: 12,
+      calibratedLength: 296,
+      targetLastMm: 308,
+      ukSize: 'UK 12',
+      ukSizeNum: 12,
+      widthClass: 'Wide (2E)',
+      insoleRec: '3mm Slim High-Density PU Footbed'
+    };
+
+    let selectedSizeFilter = 'All';
+
+    const products = [
+      {
+        id: 'p1',
+        brand: 'GAJAPADHA Originals',
+        title: 'GP-01 Sovereign Runner (Logo Edition)',
+        category: 'Athletic & Running',
+        price: 3499,
+        sizes: ['UK 11', 'UK 11.5', 'UK 12', 'UK 12.5', 'UK 13', 'UK 14', 'UK 15'],
+        refUk12LengthMm: 307,
+        refUk12WidthMm: 114,
+        widthClass: 'Wide (2E)',
+        stockBadge: 'Signature 3D Ready',
+        primaryColor: '#201E3A',
+        secondaryColor: '#413D3A',
+        soleColor: '#C48B32'
+      },
+      {
+        id: 'p2',
+        brand: 'Vanguard Leather',
+        title: 'Kensington Goodyear Oxford',
+        category: 'Formal Office',
+        price: 4499,
+        sizes: ['UK 11', 'UK 12', 'UK 13', 'UK 14'],
+        refUk12LengthMm: 310,
+        refUk12WidthMm: 106,
+        widthClass: 'Standard (D/E)',
+        stockBadge: 'Agra Export Stock',
+        primaryColor: '#413D3A',
+        secondaryColor: '#201E3A',
+        soleColor: '#D6D1C7'
+      },
+      {
+        id: 'p3',
+        brand: 'GAJAPADHA Custom Lab',
+        title: 'GP-X1 Court Low-Top',
+        category: 'Casual Sneakers',
+        price: 3299,
+        sizes: ['UK 11', 'UK 11.5', 'UK 12', 'UK 12.5', 'UK 13', 'UK 14', 'UK 15'],
+        refUk12LengthMm: 307,
+        refUk12WidthMm: 113,
+        widthClass: 'Wide (2E)',
+        stockBadge: 'Customizable in 3D',
+        primaryColor: '#C48B32',
+        secondaryColor: '#201E3A',
+        soleColor: '#EAE6DF'
+      },
+      {
+        id: 'p4',
+        brand: 'Kinetix Pro',
+        title: 'Titan 4E High-Load Trainer',
+        category: 'Athletic & Running',
+        price: 3899,
+        sizes: ['UK 11', 'UK 12', 'UK 13', 'UK 14', 'UK 15'],
+        refUk12LengthMm: 309,
+        refUk12WidthMm: 120,
+        widthClass: 'Extra-Wide (4E)',
+        stockBadge: 'Ready Stock',
+        primaryColor: '#2E4057',
+        secondaryColor: '#201E3A',
+        soleColor: '#E2DDD5'
+      },
+      {
+        id: 'p5',
+        brand: 'Monarch Heritage',
+        title: 'Ambur Suede Penny Loafer',
+        category: 'Loafers & Boots',
+        price: 3199,
+        sizes: ['UK 11', 'UK 11.5', 'UK 12', 'UK 13'],
+        refUk12LengthMm: 305,
+        refUk12WidthMm: 102,
+        widthClass: 'Narrow/Lean (B/C)',
+        stockBadge: 'Ambur Cluster',
+        primaryColor: '#8C6239',
+        secondaryColor: '#413D3A',
+        soleColor: '#EAE6DF'
+      },
+      {
+        id: 'p6',
+        brand: 'GAJAPADHA Originals',
+        title: 'GP-Metro Knit Slip-On',
+        category: 'Casual Sneakers',
+        price: 2699,
+        sizes: ['UK 11', 'UK 12', 'UK 13', 'UK 14'],
+        refUk12LengthMm: 307,
+        refUk12WidthMm: 112,
+        widthClass: 'Wide (2E)',
+        stockBadge: 'Ready Stock',
+        primaryColor: '#413D3A',
+        secondaryColor: '#C48B32',
+        soleColor: '#EAE6DF'
+      },
+      {
+        id: 'p7',
+        brand: 'TimberCrest',
+        title: 'Garrison Goodyear Chelsea Boot',
+        category: 'Loafers & Boots',
+        price: 4899,
+        sizes: ['UK 11', 'UK 12', 'UK 13', 'UK 14', 'UK 15'],
+        refUk12LengthMm: 308,
+        refUk12WidthMm: 115,
+        widthClass: 'Wide (2E)',
+        stockBadge: 'OEM Partner Batch',
+        primaryColor: '#201E3A',
+        secondaryColor: '#413D3A',
+        soleColor: '#C48B32'
+      },
+      {
+        id: 'p8',
+        brand: 'FormaPlus',
+        title: 'Executive Wholecut Derby',
+        category: 'Formal Office',
+        price: 3599,
+        sizes: ['UK 11', 'UK 11.5', 'UK 12', 'UK 13', 'UK 14'],
+        refUk12LengthMm: 307,
+        refUk12WidthMm: 109,
+        widthClass: 'Standard (D/E)',
+        stockBadge: 'Ready Stock',
+        primaryColor: '#201E3A',
+        secondaryColor: '#413D3A',
+        soleColor: '#D6D1C7'
+      }
+    ];
+
+    let cart = [
+      {
+        title: 'GP-01 Sovereign Runner (Logo Edition)',
+        brand: 'GAJAPADHA Originals',
+        size: 'UK 12 (307mm Last)',
+        insole: '3mm Slim PU Footbed',
+        price: 3499
+      }
+    ];
+
+    // -----------------------------------------------------------------------
+    // 2. CLEAN EDITORIAL TAB NAVIGATION
+    // -----------------------------------------------------------------------
+    function switchTab(tabId) {
+      const tabs = ['marketplace', 'studio', 'fitpassport', 'seller'];
+      tabs.forEach(t => {
+        document.getElementById(`tab-${t}`).classList.add('hidden');
+        const dBtn = document.getElementById(`nav-${t}`);
+        if (dBtn) {
+          dBtn.className = 'py-1 border-b-2 border-transparent text-gaja-charcoal hover:text-gaja-navy transition flex items-center gap-1.5';
+        }
+        const mBtn = document.getElementById(`mnav-${t}`);
+        if (mBtn) {
+          mBtn.className = 'text-gaja-charcoal pb-1';
+        }
+      });
+
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+      const activeDBtn = document.getElementById(`nav-${tabId}`);
+      if (activeDBtn) {
+        activeDBtn.className = 'py-1 border-b-2 border-gaja-gold text-gaja-navy font-bold transition flex items-center gap-1.5';
+      }
+      const activeMBtn = document.getElementById(`mnav-${tabId}`);
+      if (activeMBtn) {
+        activeMBtn.className = 'text-gaja-navy border-b-2 border-gaja-gold font-bold pb-1';
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (tabId === 'studio') {
+        setTimeout(() => {
+          initThreeStudio();
+          onStudioResize();
+        }, 60);
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. MARKETPLACE CATALOG RENDERING
+    // -----------------------------------------------------------------------
+    const sizePills = ['All', 'UK 10.5', 'UK 11', 'UK 11.5', 'UK 12', 'UK 13', 'UK 14', 'UK 15'];
+
+    function renderSizePills() {
+      const container = document.getElementById('size-filter-container');
+      container.innerHTML = sizePills.map(sz => {
+        const active = selectedSizeFilter === sz;
+        return `<button onclick="setSizeFilter('${sz}')" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+          active
+            ? 'bg-gaja-navy text-white'
+            : 'bg-gaja-bg text-gaja-charcoal hover:text-gaja-navy border border-gaja-border'
+        }">${sz}</button>`;
+      }).join('');
+    }
+
+    function setSizeFilter(sz) {
+      selectedSizeFilter = sz;
+      renderSizePills();
+      renderMarketplace();
+    }
+
+    function getShoeSvg(p) {
+      return `
+        <svg viewBox="0 0 280 135" class="w-full h-32">
+          <ellipse cx="140" cy="118" rx="100" ry="5" fill="rgba(32,30,58,0.10)" />
+          <!-- Outsole -->
+          <path d="M 34 100 Q 140 104 246 96 Q 252 108 240 113 L 38 113 Q 28 109 34 100 Z" fill="${p.soleColor}" stroke="#413D3A" stroke-width="1.2"/>
+          <!-- Upper Silhouette -->
+          <path d="M 38 100 L 44 52 Q 70 66 102 60 L 136 36 Q 165 54 218 74 Q 248 80 244 98 Z" fill="${p.primaryColor}" />
+          <!-- Quarter Panel -->
+          <path d="M 80 94 L 132 56 L 164 66 L 108 98 Z" fill="${p.secondaryColor}" />
+          <!-- Laces -->
+          <line x1="126" y1="46" x2="138" y2="54" stroke="#FAF9F6" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="142" y1="54" x2="154" y2="62" stroke="#FAF9F6" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="158" y1="62" x2="170" y2="69" stroke="#FAF9F6" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      `;
+    }
+
+    function computeProductFitMatch(p) {
+      const widthDiff = p.refUk12WidthMm - fitPassport.rawWidth;
+      if (widthDiff < -4) {
+        return { label: `Runs Narrow • Order +0.5 Size`, badge: 'bg-amber-50 text-amber-800 border-amber-200' };
+      } else if (widthDiff > 6) {
+        return { label: `Roomy Fit • Pair w/ 8mm Insole`, badge: 'bg-gaja-surface text-gaja-charcoal border-gaja-border' };
+      }
+      return { label: `97% Fit Match for Your ${fitPassport.ukSize}`, badge: 'bg-gaja-goldLight text-gaja-navy border-gaja-gold/40' };
+    }
+
+    function renderMarketplace() {
+      const catFilter = document.getElementById('category-filter').value;
+      const widthFilter = document.getElementById('width-filter').value;
+      const grid = document.getElementById('marketplace-grid');
+
+      const filtered = products.filter(p => {
+        const matchSize = selectedSizeFilter === 'All' || p.sizes.includes(selectedSizeFilter);
+        const matchCat = catFilter === 'All' || p.category === catFilter;
+        const matchWidth = widthFilter === 'All' || p.widthClass === widthFilter;
+        return matchSize && matchCat && matchWidth;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full p-10 rounded-xl bg-white border border-gaja-border text-center space-y-3">
+            <h3 class="font-serif text-xl font-semibold text-gaja-navy">No Ready-Stock Pair Matches All Filters</h3>
+            <p class="text-xs text-gaja-charcoal max-w-md mx-auto">Use our 3D Custom Shoe Studio to craft this exact UK size and width on demand.</p>
+            <button onclick="switchTab('studio')" class="px-5 py-2.5 rounded-lg bg-gaja-navy text-white text-xs font-semibold">Open 3D Custom Studio</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const fit = computeProductFitMatch(p);
+        return `
+          <article class="rounded-xl bg-white border border-gaja-border hover:border-gaja-gold transition flex flex-col justify-between p-5 shadow-sm">
+            <div>
+              <div class="flex items-center justify-between text-[11px] font-semibold text-gaja-charcoal mb-2">
+                <span class="uppercase tracking-wider">${p.brand}</span>
+                <span class="px-2 py-0.5 rounded bg-gaja-bg border border-gaja-border text-gaja-navy">${p.stockBadge}</span>
+              </div>
+
+              <div class="py-3 bg-gaja-bg rounded-lg px-3 mb-3 border border-gaja-border/60">
+                ${getShoeSvg(p)}
+              </div>
+
+              <div class="px-2.5 py-1 rounded border text-[11px] font-semibold mb-3 ${fit.badge}">
+                ${fit.label}
+              </div>
+
+              <h3 class="font-serif text-lg font-semibold text-gaja-navy leading-snug">${p.title}</h3>
+              <div class="font-sans font-bold text-base text-gaja-gold mt-1">₹${p.price.toLocaleString('en-IN')}</div>
+
+              <div class="mt-2 pt-2 border-t border-gaja-border text-[11px] text-gaja-charcoal space-y-0.5">
+                <div><strong>Verified UK 12 Last:</strong> ${p.refUk12LengthMm}mm L × ${p.refUk12WidthMm}mm W</div>
+                <div><strong>Width Profile:</strong> ${p.widthClass}</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-gaja-border">
+              <button onclick="customizeProductIn3D('${p.id}')" class="py-2 px-2.5 rounded-lg border border-gaja-border hover:border-gaja-navy text-gaja-navy text-xs font-semibold transition">
+                3D Customize
+              </button>
+              <button onclick="quickAddProduct('${p.id}')" class="py-2 px-2.5 rounded-lg bg-gaja-navy hover:bg-gaja-charcoal text-white text-xs font-semibold transition">
+                Add ${fitPassport.ukSize}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function customizeProductIn3D(productId) {
+      const p = products.find(item => item.id === productId);
+      if (p) {
+        partColors['vamp'] = p.primaryColor;
+        partColors['quarter'] = p.secondaryColor;
+        partColors['outsole'] = p.soleColor;
+        Object.keys(partColors).forEach(k => {
+          if (partMeshes[k]) {
+            partMeshes[k].forEach(mesh => mesh.material.color.set(partColors[k]));
+          }
+        });
+        initStudioControlsUI();
+      }
+      switchTab('studio');
+      showToast(`Loaded ${p ? p.title : 'GAJAPADHA'} into 3D Custom Studio`);
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. FIT PASSPORT CALCULATOR
+    // -----------------------------------------------------------------------
+    function syncFitPassport(source) {
+      const lSlider = document.getElementById('input-length-slider');
+      const lNum = document.getElementById('input-length-num');
+      const wSlider = document.getElementById('input-width-slider');
+      const wNum = document.getElementById('input-width-num');
+
+      if (source === 'slider') {
+        lNum.value = lSlider.value;
+        wNum.value = wSlider.value;
+      } else {
+        lSlider.value = Math.min(335, Math.max(280, Number(lNum.value) || 296));
+        wSlider.value = Math.min(130, Math.max(95, Number(wNum.value) || 113));
+      }
+      calculateFitPassport();
+    }
+
+    function setClearance(mm) {
+      fitPassport.clearance = mm;
+      [8, 12, 15].forEach(val => {
+        const btn = document.getElementById(`clearance-${val}`);
+        if (val === mm) {
+          btn.className = 'p-2.5 rounded-lg border-2 border-gaja-navy bg-gaja-goldLight text-xs font-bold text-gaja-navy';
+        } else {
+          btn.className = 'p-2.5 rounded-lg border border-gaja-border bg-gaja-bg text-xs font-semibold text-gaja-charcoal';
+        }
+      });
+      calculateFitPassport();
+    }
+
+    function calculateFitPassport() {
+      const rawL = Number(document.getElementById('input-length-slider').value);
+      const rawW = Number(document.getElementById('input-width-slider').value);
+      const postureOffset = Number(document.getElementById('fit-posture').value);
+      const timeOffset = Number(document.getElementById('fit-time').value);
+
+      const calibratedFootLength = Math.round((rawL + postureOffset + timeOffset) * 10) / 10;
+      const targetInternalLast = Math.round(calibratedFootLength + fitPassport.clearance);
+
+      let ukLabel = 'UK 10.5';
+      let ukNum = 10.5;
+      if (targetInternalLast <= 294) { ukLabel = 'UK 10.5'; ukNum = 10.5; }
+      else if (targetInternalLast <= 299) { ukLabel = 'UK 11'; ukNum = 11; }
+      else if (targetInternalLast <= 304) { ukLabel = 'UK 11.5'; ukNum = 11.5; }
+      else if (targetInternalLast <= 310) { ukLabel = 'UK 12'; ukNum = 12; }
+      else if (targetInternalLast <= 318) { ukLabel = 'UK 13'; ukNum = 13; }
+      else if (targetInternalLast <= 326) { ukLabel = 'UK 14'; ukNum = 14; }
+      else { ukLabel = 'UK 15'; ukNum = 15; }
+
+      const ratio = rawW / calibratedFootLength;
+      let widthClass = 'Standard (D/E)';
+      let insoleTitle = '5mm Standard Contoured Footbed';
+      let insoleDesc = 'Balanced width-to-length ratio. Our 5mm contoured footbed provides optimal arch support.';
+
+      if (ratio < 0.355) {
+        widthClass = 'Narrow/Lean (B/C)';
+        insoleTitle = '8mm Volume-Reducer Footbed';
+        insoleDesc = 'Lean foot profile detected. Our 8mm deep-cupped footbed fills excess interior volume so your foot never slides.';
+      } else if (ratio >= 0.375 && ratio < 0.398) {
+        widthClass = 'Wide (2E)';
+        insoleTitle = '3mm Slim High-Density PU Footbed';
+        insoleDesc = 'Broad forefoot splay. Pairing our 2E wide base sole with a 3mm slim footbed creates +5mm of extra toe-box room.';
+      } else if (ratio >= 0.398) {
+        widthClass = 'Extra-Wide (4E)';
+        insoleTitle = '3mm Slim PU Footbed + Wide Lasting';
+        insoleDesc = 'High-volume 4E foot profile. Uses a 3mm slim insole plus +3mm upper lasting allowance.';
+      }
+
+      const refBrand = document.getElementById('ref-brand').value;
+      const refSize = Number(document.getElementById('ref-size').value);
+      const refFeel = document.getElementById('ref-feel').value;
+      const refAlertBox = document.getElementById('ref-alert-box');
+
+      let expectedRefSize = refSize + (refFeel === 'tight' ? 0.5 : refFeel === 'loose' ? -0.5 : 0);
+      if (Math.abs(ukNum - expectedRefSize) >= 1.5) {
+        refAlertBox.className = 'p-2.5 rounded text-xs font-medium bg-amber-50 text-amber-900 border border-amber-300';
+        refAlertBox.innerHTML = `<strong>Check Measurement:</strong> ${rawL}mm calculates to ${ukLabel}, which differs from your ${refBrand} UK ${refSize}. Ensure your heel touched the wall.`;
+      } else {
+        refAlertBox.className = 'p-2.5 rounded text-xs font-medium bg-emerald-50 text-emerald-900 border border-emerald-200';
+        refAlertBox.innerHTML = `<strong>Verified:</strong> Your ${calibratedFootLength}mm length matches your ${refBrand} UK ${refSize} reference shoe.`;
+      }
+
+      fitPassport.rawLength = rawL;
+      fitPassport.rawWidth = rawW;
+      fitPassport.calibratedLength = calibratedFootLength;
+      fitPassport.targetLastMm = targetInternalLast;
+      fitPassport.ukSize = ukLabel;
+      fitPassport.ukSizeNum = ukNum;
+      fitPassport.widthClass = widthClass;
+      fitPassport.insoleRec = insoleTitle;
+
+      const outUkSizeEl = document.getElementById('out-uk-size');
+      if (outUkSizeEl) outUkSizeEl.textContent = ukLabel;
+
+      const outLastMmEl = document.getElementById('out-last-mm');
+      if (outLastMmEl) outLastMmEl.textContent = `Target Last: ${targetInternalLast} mm`;
+
+      const outWidthLabelEl = document.getElementById('out-width-label');
+      if (outWidthLabelEl) outWidthLabelEl.textContent = widthClass;
+
+      const outRatioTextEl = document.getElementById('out-ratio-text');
+      if (outRatioTextEl) outRatioTextEl.textContent = `W/L Ratio: ${ratio.toFixed(3)}`;
+
+      const outInsoleTitleEl = document.getElementById('out-insole-title');
+      if (outInsoleTitleEl) outInsoleTitleEl.textContent = insoleTitle;
+
+      const outInsoleDescEl = document.getElementById('out-insole-desc');
+      if (outInsoleDescEl) outInsoleDescEl.textContent = insoleDesc;
+
+      const navPassportBadgeEl = document.getElementById('nav-passport-badge');
+      if (navPassportBadgeEl) navPassportBadgeEl.textContent = `${ukLabel} • ${widthClass}`;
+
+      const topFitIndicatorEl = document.getElementById('top-fit-indicator');
+      if (topFitIndicatorEl) {
+        topFitIndicatorEl.innerHTML = `Active Fit Profile: <strong class="text-gaja-navy">${ukLabel} (${calibratedFootLength}mm × ${rawW}mm • ${widthClass})</strong>`;
+      }
+
+      const bannerPassportSummaryEl = document.getElementById('banner-passport-summary');
+      if (bannerPassportSummaryEl) {
+        bannerPassportSummaryEl.innerHTML = `Matched to your Fit Passport: <strong class="text-gaja-navy">${ukLabel} (${calibratedFootLength}mm × ${rawW}mm • ${widthClass})</strong>`;
+      }
+
+      const refAlertBoxEl = document.getElementById('ref-alert-box');
+      if (refAlertBoxEl) {
+        let expectedRefSize = refSize + (refFeel === 'tight' ? 0.5 : refFeel === 'loose' ? -0.5 : 0);
+        if (Math.abs(ukNum - expectedRefSize) >= 1.5) {
+          refAlertBoxEl.className = 'p-2.5 rounded text-xs font-medium bg-amber-50 text-amber-900 border border-amber-300';
+          refAlertBoxEl.innerHTML = `<strong>Check Measurement:</strong> ${rawL}mm calculates to ${ukLabel}, which differs from your ${refBrand} UK ${refSize}. Ensure your heel touched the wall.`;
+        } else {
+          refAlertBoxEl.className = 'p-2.5 rounded text-xs font-medium bg-emerald-50 text-emerald-900 border border-emerald-200';
+          refAlertBoxEl.innerHTML = `<strong>Verified:</strong> Your ${calibratedFootLength}mm length matches your ${refBrand} UK ${refSize} reference shoe.`;
+        }
+      }
+
+      const brandRows = [
+        { brand: 'GAJAPADHA Custom Last', note: '2E Base + Modular Insole', rec: ukLabel },
+        { brand: 'Nike', note: 'Runs 3.5mm Narrow', rec: ratio > 0.37 ? `UK ${Math.min(15, Math.ceil(ukNum + 0.5))}` : ukLabel },
+        { brand: 'Adidas', note: 'Standard D/E Last', rec: ukLabel },
+        { brand: 'Bata India', note: 'Snug Instep', rec: `UK ${Math.min(15, Math.ceil(ukNum + 0.5))}` },
+        { brand: 'Woodland', note: 'Wide Forefoot Last', rec: ukLabel }
+      ];
+
+      const brandTranslatorTbody = document.getElementById('brand-translator-tbody');
+      if (brandTranslatorTbody) {
+        brandTranslatorTbody.innerHTML = brandRows.map(r => `
+          <tr>
+            <td class="py-2 px-3 font-semibold text-gaja-navy">${r.brand}</td>
+            <td class="py-2 px-3 text-gaja-charcoal">${r.note}</td>
+            <td class="py-2 px-3 text-right font-bold text-gaja-gold">${r.rec}</td>
+          </tr>
+        `).join('');
+      }
+
+      renderMarketplace();
+    }
+
+    function applyPassportAndBrowse() {
+      calculateFitPassport();
+      switchTab('marketplace');
+      showToast(`Fit Passport Saved: ${fitPassport.ukSize} (${fitPassport.widthClass})`);
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. THREE.JS 3D CUSTOM SHOE STUDIO (Aligned with GAJAPADHA Logo Colors)
+    // -----------------------------------------------------------------------
+    let scene, camera, renderer, shoeGroup, keyLight, rimLight, ambientLight;
+    let threeInitialized = false;
+    let autoRotate = true;
+    let isExploded = false;
+    let lightingModeIndex = 0;
+    let isDragging = false;
+    let prevMouse = { x: 0, y: 0 };
+
+    const studioParts = [
+      { id: 'vamp', label: '1. Vamp (Front Toe Box)', defaultColor: '#201E3A' },
+      { id: 'quarter', label: '2. Quarter Panels (Sides)', defaultColor: '#413D3A' },
+      { id: 'heel', label: '3. Heel Counter & Collar', defaultColor: '#C48B32' },
+      { id: 'laces', label: '4. Eyestay & Laces', defaultColor: '#FAF9F6' },
+      { id: 'tongue', label: '5. Tongue & GAJAPADHA Tag', defaultColor: '#201E3A' },
+      { id: 'midsole', label: '6. EVA Midsole', defaultColor: '#FAF9F6' },
+      { id: 'outsole', label: '7. Rubber Outsole', defaultColor: '#413D3A' }
+    ];
+
+    const studioMaterials = [
+      { id: 'leather', name: 'Full-Grain Leather', extra: 0, roughness: 0.35, metalness: 0.12 },
+      { id: 'suede', name: 'Ambur Suede', extra: 300, roughness: 0.85, metalness: 0.0 },
+      { id: 'mesh', name: 'Engineered Knit Mesh', extra: 0, roughness: 0.70, metalness: 0.05 },
+      { id: 'vegan', name: 'Vegan Microfiber', extra: 200, roughness: 0.28, metalness: 0.22 }
+    ];
+
+    // Palette anchored by the uploaded GAJAPADHA Logo Colors
+    const studioPalette = [
+      { name: 'GAJAPADHA Navy (Logo)', hex: '#201E3A' },
+      { name: 'Espresso Charcoal (Logo)', hex: '#413D3A' },
+      { name: 'Ochre Gold (Logo Trunk)', hex: '#C48B32' },
+      { name: 'Warm Alabaster (Logo BG)', hex: '#FAF9F6' },
+      { name: 'Ambur Saddle Tan', hex: '#8C6239' },
+      { name: 'Oxblood Heritage', hex: '#6E2626' },
+      { name: 'Forest Moss', hex: '#2D4A3E' },
+      { name: 'Royal Cobalt', hex: '#1E3A8A' },
+      { name: 'Warm Stone', hex: '#D6D1C7' },
+      { name: 'Obsidian Black', hex: '#111111' }
+    ];
+
+    let activeStudioPart = 'vamp';
+    let activeStudioMaterial = studioMaterials[0];
+    const partMeshes = {};
+    const partColors = {};
+    studioParts.forEach(p => partColors[p.id] = p.defaultColor);
+
+    function initStudioControlsUI() {
+      const partContainer = document.getElementById('studio-part-buttons');
+      partContainer.innerHTML = studioParts.map(p => {
+        const isActive = p.id === activeStudioPart;
+        return `
+          <button onclick="selectStudioPart('${p.id}')" class="p-2 rounded-lg border text-left text-xs font-semibold transition flex items-center gap-2 ${
+            isActive
+              ? 'border-gaja-navy bg-gaja-goldLight text-gaja-navy'
+              : 'border-gaja-border bg-gaja-bg text-gaja-charcoal hover:text-gaja-navy'
+          }">
+            <span class="w-3.5 h-3.5 rounded-full flex-shrink-0 border border-black/20" style="background:${partColors[p.id]}"></span>
+            <span class="truncate">${p.label}</span>
+          </button>
+        `;
+      }).join('');
+
+      const matContainer = document.getElementById('studio-material-buttons');
+      matContainer.innerHTML = studioMaterials.map(m => {
+        const isActive = m.id === activeStudioMaterial.id;
+        return `
+          <button onclick="selectStudioMaterial('${m.id}')" class="p-2 rounded-lg border text-left text-xs font-semibold transition flex items-center justify-between ${
+            isActive
+              ? 'border-gaja-navy bg-gaja-goldLight text-gaja-navy'
+              : 'border-gaja-border bg-gaja-bg text-gaja-charcoal hover:text-gaja-navy'
+          }">
+            <span class="truncate">${m.name}</span>
+            <span class="text-[10px] text-gaja-gold font-bold ml-1">${m.extra > 0 ? '+₹' + m.extra : 'Included'}</span>
+          </button>
+        `;
+      }).join('');
+
+      const swatchContainer = document.getElementById('studio-color-swatches');
+      swatchContainer.innerHTML = studioPalette.map(c => {
+        const isSelected = partColors[activeStudioPart].toLowerCase() === c.hex.toLowerCase();
+        return `
+          <button onclick="applyStudioColor('${c.hex}')" title="${c.name}" class="w-8 h-8 rounded-lg border-2 transition transform hover:scale-105 ${
+            isSelected ? 'border-gaja-gold scale-110 ring-2 ring-gaja-gold/40' : 'border-gaja-border'
+          }" style="background-color: ${c.hex};"></button>
+        `;
+      }).join('');
+
+      const hexInput = document.getElementById('custom-hex-picker');
+      if (hexInput) hexInput.value = partColors[activeStudioPart];
+
+      const activeObj = studioParts.find(p => p.id === activeStudioPart);
+      document.getElementById('studio-active-part-label').textContent = activeObj.label;
+      document.getElementById('studio-active-swatch').style.backgroundColor = partColors[activeStudioPart];
+
+      updateStudioSpecs();
+    }
+
+    function selectStudioPart(partId) {
+      activeStudioPart = partId;
+      initStudioControlsUI();
+    }
+
+    function selectStudioMaterial(matId) {
+      activeStudioMaterial = studioMaterials.find(m => m.id === matId) || studioMaterials[0];
+      ['vamp', 'quarter', 'heel', 'tongue'].forEach(partKey => {
+        if (partMeshes[partKey]) {
+          partMeshes[partKey].forEach(mesh => {
+            mesh.material.roughness = activeStudioMaterial.roughness;
+            mesh.material.metalness = activeStudioMaterial.metalness;
+            mesh.material.needsUpdate = true;
+          });
+        }
+      });
+      initStudioControlsUI();
+    }
+
+    function applyStudioColor(hex) {
+      partColors[activeStudioPart] = hex;
+      if (partMeshes[activeStudioPart]) {
+        partMeshes[activeStudioPart].forEach(mesh => {
+          mesh.material.color.set(hex);
+        });
+      }
+      initStudioControlsUI();
+    }
+
+    function applyColorwayPreset(presetName) {
+      const presets = {
+        gajapadha: { vamp: '#201E3A', quarter: '#413D3A', heel: '#C48B32', laces: '#FAF9F6', tongue: '#201E3A', midsole: '#FAF9F6', outsole: '#413D3A' },
+        ochre: { vamp: '#C48B32', quarter: '#413D3A', heel: '#201E3A', laces: '#FAF9F6', tongue: '#413D3A', midsole: '#FAF9F6', outsole: '#201E3A' },
+        alabaster: { vamp: '#FAF9F6', quarter: '#D6D1C7', heel: '#201E3A', laces: '#201E3A', tongue: '#C48B32', midsole: '#FAF9F6', outsole: '#413D3A' },
+        royal: { vamp: '#FAF9F6', quarter: '#1E3A8A', heel: '#201E3A', laces: '#FAF9F6', tongue: '#C48B32', midsole: '#FAF9F6', outsole: '#1E3A8A' }
+      };
+      const chosen = presets[presetName];
+      if (!chosen) return;
+      Object.keys(chosen).forEach(partKey => {
+        partColors[partKey] = chosen[partKey];
+        if (partMeshes[partKey]) {
+          partMeshes[partKey].forEach(m => m.material.color.set(chosen[partKey]));
+        }
+      });
+      initStudioControlsUI();
+      showToast('Applied GAJAPADHA colorway theme');
+    }
+
+    function randomizeShoeColors() {
+      studioParts.forEach(p => {
+        const rand = studioPalette[Math.floor(Math.random() * studioPalette.length)];
+        partColors[p.id] = rand.hex;
+        if (partMeshes[p.id]) {
+          partMeshes[p.id].forEach(m => m.material.color.set(rand.hex));
+        }
+      });
+      initStudioControlsUI();
+    }
+
+    function updateStudioSpecs() {
+      const total = 3499 + activeStudioMaterial.extra;
+      document.getElementById('studio-total-price').textContent = `₹${total.toLocaleString('en-IN')}`;
+      const sz = document.getElementById('studio-size-select').value;
+      const ins = document.getElementById('studio-insole-select').value;
+      const mono = (document.getElementById('studio-monogram').value || 'GP12').toUpperCase();
+      document.getElementById('studio-spec-subtext').textContent = `${sz} • ${ins.split('—')[0].trim()}`;
+      const monoPreview = document.getElementById('canvas-mono-preview');
+      if (monoPreview) monoPreview.textContent = mono;
+    }
+
+    function addCustomShoeToCart() {
+      const sz = document.getElementById('studio-size-select').value;
+      const ins = document.getElementById('studio-insole-select').value.split('—')[0].trim();
+      const mono = document.getElementById('studio-monogram').value.trim().toUpperCase();
+      const price = 3499 + activeStudioMaterial.extra;
+
+      cart.push({
+        title: `Custom GAJAPADHA 3D Shoe (${activeStudioMaterial.name}${mono ? ' • ' + mono : ''})`,
+        brand: 'GAJAPADHA 3D Studio',
+        size: sz,
+        insole: ins,
+        price: price
+      });
+      updateCartUI();
+      toggleCartDrawer(true);
+      showToast('Added custom 3D shoe to your bag');
+    }
+
+    function initThreeStudio() {
+      if (threeInitialized) return;
+      const container = document.getElementById('three-canvas-container');
+      if (!container) return;
+
+      const width = container.clientWidth || 600;
+      const height = container.clientHeight || 420;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 1000);
+      camera.position.set(4.5, 2.3, 5.2);
+      camera.lookAt(0, 0.15, 0);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
+
+      ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+      scene.add(ambientLight);
+
+      keyLight = new THREE.DirectionalLight(0xffffff, 0.95);
+      keyLight.position.set(6, 10, 7);
+      scene.add(keyLight);
+
+      rimLight = new THREE.DirectionalLight(0xC48B32, 0.45);
+      rimLight.position.set(-6, 4, -5);
+      scene.add(rimLight);
+
+      shoeGroup = new THREE.Group();
+      studioParts.forEach(p => partMeshes[p.id] = []);
+
+      function createMat(partKey, rough = 0.4, metal = 0.1) {
+        return new THREE.MeshStandardMaterial({
+          color: partColors[partKey],
+          roughness: rough,
+          metalness: metal
+        });
+      }
+
+      function registerMesh(partKey, mesh, explodeOffset) {
+        mesh.userData.basePos = mesh.position.clone();
+        mesh.userData.explodeOffset = explodeOffset;
+        shoeGroup.add(mesh);
+        partMeshes[partKey].push(mesh);
+      }
+
+      // 7. OUTSOLE
+      const outsoleMat = createMat('outsole', 0.85, 0.05);
+      const outsoleRear = new THREE.Mesh(new THREE.CylinderGeometry(0.92, 0.96, 0.22, 32), outsoleMat);
+      outsoleRear.position.set(-1.15, -0.68, 0);
+      registerMesh('outsole', outsoleRear, new THREE.Vector3(0, -0.45, 0));
+
+      const outsoleMid = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.22, 1.75), outsoleMat);
+      outsoleMid.position.set(0.0, -0.68, 0);
+      registerMesh('outsole', outsoleMid, new THREE.Vector3(0, -0.45, 0));
+
+      const outsoleFront = new THREE.Mesh(new THREE.CylinderGeometry(0.98, 1.0, 0.22, 32), outsoleMat);
+      outsoleFront.scale.set(1.25, 1, 0.95);
+      outsoleFront.position.set(1.25, -0.68, 0);
+      registerMesh('outsole', outsoleFront, new THREE.Vector3(0, -0.45, 0));
+
+      // 6. MIDSOLE
+      const midsoleMat = createMat('midsole', 0.55, 0.05);
+      const midsoleRear = new THREE.Mesh(new THREE.CylinderGeometry(0.90, 0.95, 0.42, 32), midsoleMat);
+      midsoleRear.position.set(-1.15, -0.38, 0);
+      registerMesh('midsole', midsoleRear, new THREE.Vector3(0, -0.2, 0));
+
+      const midsoleMid = new THREE.Mesh(new THREE.BoxGeometry(2.35, 0.38, 1.72), midsoleMat);
+      midsoleMid.position.set(0.0, -0.40, 0);
+      registerMesh('midsole', midsoleMid, new THREE.Vector3(0, -0.2, 0));
+
+      const midsoleFront = new THREE.Mesh(new THREE.CylinderGeometry(0.95, 0.99, 0.34, 32), midsoleMat);
+      midsoleFront.scale.set(1.25, 1, 0.93);
+      midsoleFront.position.set(1.25, -0.42, 0);
+      registerMesh('midsole', midsoleFront, new THREE.Vector3(0, -0.2, 0));
+
+      // 1. VAMP
+      const vampMat = createMat('vamp', activeStudioMaterial.roughness, activeStudioMaterial.metalness);
+      const vampMesh = new THREE.Mesh(new THREE.SphereGeometry(0.95, 32, 24), vampMat);
+      vampMesh.scale.set(1.45, 0.62, 0.92);
+      vampMesh.position.set(1.05, -0.05, 0);
+      registerMesh('vamp', vampMesh, new THREE.Vector3(0.45, 0.1, 0));
+
+      // 2. QUARTER PANELS
+      const quarterMat = createMat('quarter', activeStudioMaterial.roughness, activeStudioMaterial.metalness);
+      const quarterBox = new THREE.Mesh(new THREE.BoxGeometry(2.05, 0.92, 1.62), quarterMat);
+      quarterBox.position.set(-0.25, 0.22, 0);
+      registerMesh('quarter', quarterBox, new THREE.Vector3(0, 0.15, 0));
+
+      const stripeLeft = new THREE.Mesh(new THREE.BoxGeometry(1.55, 0.22, 0.08), quarterMat);
+      stripeLeft.rotation.z = 0.22;
+      stripeLeft.position.set(-0.1, 0.18, 0.82);
+      registerMesh('quarter', stripeLeft, new THREE.Vector3(0, 0.15, 0.35));
+
+      const stripeRight = new THREE.Mesh(new THREE.BoxGeometry(1.55, 0.22, 0.08), quarterMat);
+      stripeRight.rotation.z = 0.22;
+      stripeRight.position.set(-0.1, 0.18, -0.82);
+      registerMesh('quarter', stripeRight, new THREE.Vector3(0, 0.15, -0.35));
+
+      // 3. HEEL COUNTER & COLLAR
+      const heelMat = createMat('heel', activeStudioMaterial.roughness, activeStudioMaterial.metalness);
+      const heelCounterCylinder = new THREE.Mesh(new THREE.CylinderGeometry(0.84, 0.88, 0.96, 32), heelMat);
+      heelCounterCylinder.position.set(-1.15, 0.24, 0);
+      registerMesh('heel', heelCounterCylinder, new THREE.Vector3(-0.45, 0.2, 0));
+
+      // 5. TONGUE
+      const tongueMat = createMat('tongue', activeStudioMaterial.roughness, activeStudioMaterial.metalness);
+      const tongueSlope = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.22, 0.88), tongueMat);
+      tongueSlope.rotation.z = -0.36;
+      tongueSlope.position.set(0.18, 0.62, 0);
+      registerMesh('tongue', tongueSlope, new THREE.Vector3(0.1, 0.5, 0));
+
+      // 4. LACES
+      const lacesMat = createMat('laces', 0.8, 0.0);
+      for (let i = 0; i < 4; i++) {
+        const laceBar = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 1.05, 16), lacesMat);
+        laceBar.rotation.x = Math.PI / 2;
+        laceBar.position.set(0.05 + i * 0.26, 0.70 - i * 0.09, 0);
+        registerMesh('laces', laceBar, new THREE.Vector3(0.2, 0.55, 0));
+      }
+
+      const collarCavity = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.68, 0.68, 0.3, 24),
+        new THREE.MeshStandardMaterial({ color: 0x201E3A, roughness: 0.9 })
+      );
+      collarCavity.position.set(-0.95, 0.64, 0);
+      shoeGroup.add(collarCavity);
+
+      scene.add(shoeGroup);
+
+      const domElem = renderer.domElement;
+      domElem.addEventListener('mousedown', e => {
+        isDragging = true;
+        autoRotate = false;
+        updateAutoRotateBtn();
+        prevMouse = { x: e.clientX, y: e.clientY };
+      });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+      window.addEventListener('mousemove', e => {
+        if (!isDragging || !shoeGroup) return;
+        const dx = e.clientX - prevMouse.x;
+        const dy = e.clientY - prevMouse.y;
+        shoeGroup.rotation.y += dx * 0.01;
+        shoeGroup.rotation.x = Math.max(-0.8, Math.min(0.8, shoeGroup.rotation.x + dy * 0.008));
+        prevMouse = { x: e.clientX, y: e.clientY };
+      });
+      domElem.addEventListener('wheel', e => {
+        e.preventDefault();
+        camera.position.z = Math.max(3.4, Math.min(7.5, camera.position.z + e.deltaY * 0.003));
+      }, { passive: false });
+
+      window.addEventListener('resize', onStudioResize);
+      threeInitialized = true;
+      animateThreeStudio();
+    }
+
+    function toggleExplodedView() {
+      isExploded = !isExploded;
+      const btn = document.getElementById('btn-explode');
+      const overlay = document.getElementById('exploded-labels-overlay');
+      if (isExploded) {
+        btn.className = 'px-3 py-1 rounded bg-gaja-navy text-white text-xs font-semibold';
+        overlay.classList.remove('hidden');
+      } else {
+        btn.className = 'px-3 py-1 rounded bg-white border border-gaja-border text-gaja-charcoal hover:text-gaja-navy text-xs font-semibold';
+        overlay.classList.add('hidden');
+      }
+      Object.keys(partMeshes).forEach(partKey => {
+        partMeshes[partKey].forEach(mesh => {
+          if (mesh.userData.basePos && mesh.userData.explodeOffset) {
+            mesh.position.copy(mesh.userData.basePos).add(isExploded ? mesh.userData.explodeOffset : new THREE.Vector3(0, 0, 0));
+          }
+        });
+      });
+    }
+
+    function cycleStudioLighting() {
+      lightingModeIndex = (lightingModeIndex + 1) % 3;
+      const label = document.getElementById('lighting-label');
+      if (!keyLight || !rimLight || !ambientLight) return;
+      if (lightingModeIndex === 0) {
+        label.textContent = 'Studio Light';
+        ambientLight.intensity = 0.85;
+        keyLight.color.setHex(0xffffff);
+      } else if (lightingModeIndex === 1) {
+        label.textContent = 'Warm Ochre';
+        ambientLight.intensity = 0.9;
+        keyLight.color.setHex(0xfef3c7);
+      } else {
+        label.textContent = 'Crisp Daylight';
+        ambientLight.intensity = 0.95;
+        keyLight.color.setHex(0xe0f2fe);
+      }
+    }
+
+    function animateThreeStudio() {
+      requestAnimationFrame(animateThreeStudio);
+      if (autoRotate && shoeGroup) {
+        shoeGroup.rotation.y += 0.006;
+      }
+      if (renderer && scene && camera) {
+        renderer.render(scene, camera);
+      }
+    }
+
+    function onStudioResize() {
+      if (!renderer || !camera) return;
+      const container = document.getElementById('three-canvas-container');
+      if (!container || container.clientWidth === 0) return;
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    }
+
+    function toggleAutoRotate() {
+      autoRotate = !autoRotate;
+      updateAutoRotateBtn();
+    }
+
+    function updateAutoRotateBtn() {
+      const btn = document.getElementById('btn-autorotate');
+      if (!btn) return;
+      btn.className = autoRotate
+        ? 'px-3 py-1 rounded bg-gaja-navy text-white text-xs font-semibold'
+        : 'px-3 py-1 rounded bg-white border border-gaja-border text-gaja-charcoal text-xs font-semibold';
+    }
+
+    function setCameraView(preset) {
+      if (!shoeGroup) return;
+      autoRotate = false;
+      updateAutoRotateBtn();
+      if (preset === 'side') shoeGroup.rotation.set(0.05, 0, 0);
+      else if (preset === 'top') shoeGroup.rotation.set(0.95, -0.2, 0);
+      else if (preset === 'heel') shoeGroup.rotation.set(0.15, Math.PI * 0.72, 0);
+      else if (preset === 'outsole') shoeGroup.rotation.set(-0.95, 0.25, 0);
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. BAG / CART & SELLER FORM HELPERS
+    // -----------------------------------------------------------------------
+    function quickAddProduct(productId) {
+      const p = products.find(item => item.id === productId);
+      if (!p) return;
+      cart.push({
+        title: p.title,
+        brand: p.brand,
+        size: `${fitPassport.ukSize} (${p.refUk12LengthMm}mm Last)`,
+        insole: fitPassport.insoleRec,
+        price: p.price
+      });
+      updateCartUI();
+      toggleCartDrawer(true);
+      showToast(`Added ${p.title} (${fitPassport.ukSize}) to Bag`);
+    }
+
+    function removeCartItem(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      document.getElementById('cart-count-badge').textContent = cart.length;
+      const listEl = document.getElementById('cart-items-list');
+      const totalEl = document.getElementById('cart-total-amount');
+      if (cart.length === 0) {
+        listEl.innerHTML = `<p class="text-xs text-gaja-charcoal text-center py-8">Your bag is empty.</p>`;
+        totalEl.textContent = '₹0';
+        return;
+      }
+      let total = 0;
+      listEl.innerHTML = cart.map((item, idx) => {
+        total += item.price;
+        return `
+          <div class="p-3.5 rounded-lg bg-gaja-bg border border-gaja-border flex items-start justify-between gap-3">
+            <div class="text-xs space-y-0.5">
+              <div class="text-[10px] font-bold uppercase text-gaja-gold">${item.brand}</div>
+              <div class="font-bold text-gaja-navy">${item.title}</div>
+              <div class="text-gaja-charcoal">${item.size}</div>
+              <div class="font-bold text-gaja-navy pt-1">₹${item.price.toLocaleString('en-IN')}</div>
+            </div>
+            <button onclick="removeCartItem(${idx})" class="text-gaja-charcoal hover:text-red-600">
+              <i class="fa-solid fa-trash-can text-xs"></i>
+            </button>
+          </div>
+        `;
+      }).join('');
+      totalEl.textContent = `₹${total.toLocaleString('en-IN')}`;
+    }
+
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cart-drawer');
+      if (open) drawer.classList.remove('hidden');
+      else drawer.classList.add('hidden');
+    }
+
+    function simulateCheckout() {
+      toggleCartDrawer(false);
+      showToast('Prototype Order Confirmed!');
+    }
+
+    function handleNewSellerSku(e) {
+      e.preventDefault();
+      const brand = document.getElementById('sku-brand').value.trim();
+      const title = document.getElementById('sku-title').value.trim();
+      const category = document.getElementById('sku-category').value;
+      const price = Number(document.getElementById('sku-price').value) || 3499;
+      const mmLength = Number(document.getElementById('sku-mm-length').value) || 308;
+      const mmWidth = Number(document.getElementById('sku-mm-width').value) || 114;
+      const widthClass = document.getElementById('sku-width-class').value;
+
+      products.unshift({
+        id: 'p' + (products.length + 1),
+        brand,
+        title,
+        category,
+        price,
+        sizes: ['UK 11', 'UK 12', 'UK 13', 'UK 14'],
+        refUk12LengthMm: mmLength,
+        refUk12WidthMm: mmWidth,
+        widthClass,
+        stockBadge: 'Verified OEM Partner',
+        primaryColor: '#201E3A',
+        secondaryColor: '#C48B32',
+        soleColor: '#D6D1C7'
+      });
+
+      renderMarketplace();
+      switchTab('marketplace');
+      showToast(`Published "${title}" to GAJAPADHA Marketplace`);
+    }
+
+    function openStageModal() {
+      document.getElementById('stage-modal').classList.remove('hidden');
+    }
+
+    function closeStageModal() {
+      document.getElementById('stage-modal').classList.add('hidden');
+    }
+
+    function copyStageAnswers() {
+      const content = document.getElementById('stage-worksheet-content').innerText;
+      const temp = document.createElement('textarea');
+      temp.value = content;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast('Copied Stage 5.1 answers to clipboard');
+    }
+
+    function showToast(msg) {
+      const box = document.getElementById('toast-box');
+      document.getElementById('toast-msg').textContent = msg;
+      box.classList.remove('hidden');
+      setTimeout(() => box.classList.add('hidden'), 3200);
+    }
+
+    window.onload = function () {
+      renderSizePills();
+      calculateFitPassport();
+      initStudioControlsUI();
+      updateCartUI();
+    };
+  </script>
+</body>
+</html>
